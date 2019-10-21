@@ -16,7 +16,17 @@
                     <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
                     <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            <i class="material-icons">input</i>Sign Out
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -26,12 +36,28 @@
     <div class="menu">
         <ul class="list">
             <li class="header">MAIN NAVIGATION</li>
-            <li class="active">
-                <a href="{{ route('admin.dashboard') }}">
-                    <i class="material-icons">home</i>
-                    <span>Home</span>
-                </a>
-            </li>
+            @if (Request::is('admin*'))
+                <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('admin/tag') ? 'active' : '' }}">
+                    <a href="{{ route('admin.tag.index') }}">
+                        <i class="material-icons">label</i>
+                        <span>Tag</span>
+                    </a>
+                </li>
+            @endif
+            @if (Request::is('author*'))
+                <li class="{{ Request::is('author/dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('author.dashboard') }}">
+                        <i class="material-icons">home</i>
+                        <span>Home</span>
+                    </a>
+                </li>
+            @endif
             <li>
                 <a href="pages/typography.html">
                     <i class="material-icons">text_fields</i>
