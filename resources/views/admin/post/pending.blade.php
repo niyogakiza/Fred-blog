@@ -93,7 +93,7 @@
                                             <a href="{{ route('admin.post.edit',$post->id) }}" class="btn btn-info waves-effect">
                                                 <i class="material-icons">edit</i>
                                             </a>
-                                            <button class="btn btn-danger waves-effect" type="button" onclick="deletePost({{ $post->id }})">
+                                            <button class="btn btn-danger waves-effect pull-right" type="button" onclick="deletePost({{ $post->id }})">
                                                 <i class="material-icons">delete</i>
                                             </button>
                                             <form id="delete-form-{{ $post->id }}" action="{{ route('admin.post.destroy',$post->id) }}" method="POST" style="display: none;">
