@@ -106,6 +106,13 @@
                         <span>Posts</span>
                     </a>
                 </li>
+                <li class="header">System</li>
+                <li class="{{ Request::is('author/settings') ? 'active' : '' }}">
+                    <a href="{{ route('author.settings') }}">
+                        <i class="material-icons">settings</i>
+                        <span>Settings</span>
+                    </a>
+                </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
