@@ -26,8 +26,8 @@ Route::group(['as'=> 'admin.','prefix' => 'admin','namespace'=>'Admin', 'middlew
     Route::resource('category','CategoryController');
     Route::resource('post','PostController');
 
-    Route::put('/post/{id}/approve', 'PostController@approval')->name('post.approve');
     Route::get('/pending/post', 'PostController@pending')->name('post.pending');
+    Route::put('/post/{id}/approve', 'PostController@approval')->name('post.approve');
 
     Route::get('/subscriber','SubscriberController@index')->name('subscriber.index');
     Route::delete('/subscriber/{subscriber}','SubscriberController@destroy')->name('subscriber.destroy');

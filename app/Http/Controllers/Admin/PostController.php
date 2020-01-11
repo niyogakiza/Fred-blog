@@ -90,12 +90,12 @@ class PostController extends Controller
         $post->save();
         $post->categories()->attach($request->categories);
         $post->tags()->attach($request->tags);
-//        $subscribers = Subscriber::all();
-//        foreach ($subscribers as $subscriber)
-//        {
-//            Notification::route('mail',$subscriber->email)
-//                ->notify(new NewPostNotify($post));
-//        }
+        $subscribers = Subscriber::all();
+        foreach ($subscribers as $subscriber)
+        {
+            Notification::route('mail',$subscriber->email)
+                ->notify(new NewPostNotify($post));
+        }
         Toastr::success('Post Successfully Saved :)','Success');
         return redirect()->route('admin.post.index');
     }
@@ -193,6 +193,13 @@ class PostController extends Controller
         {
             $post->is_approved = true;
             $post->save();
+            $post->user->notify(new AuthorPostApproved($post));
+            $subscribers = Subscriber::all();
+            foreach ($subscribers as $subscriber)
+            {
+                Notification::route('mail',$subscriber->email)
+                    ->notify(new NewPostNotify($post));
+            }
             Toastr::success('Post Successfully Approved :)','Success');
         } else {
             Toastr::info('This Post is already Approved.','info');
