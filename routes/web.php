@@ -18,6 +18,7 @@ Route::get('/category/{slug}','PostController@postByCategory')->name('category.p
 Route::get('/tag/{slug}','PostController@postByTag')->name('tag.posts');
 Route::get('profile/{username}','AuthorController@profile')->name('author.profile');
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
+Route::get('/search','SearchController@search')->name('search');
 
 Auth::routes();
 
@@ -64,7 +65,7 @@ Route::group(['as'=> 'author.','prefix' => 'author','namespace'=>'Author', 'midd
 
 });
 
-View::composer('layouts.frontend.partial.footer',function ($view) {
+View::composer('layouts.frontend.partials.footer',function ($view) {
     $categories = App\Category::all();
     $view->with('categories',$categories);
 });

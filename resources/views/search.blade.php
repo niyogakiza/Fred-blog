@@ -1,6 +1,8 @@
 @extends('layouts.frontend.app')
 
-@section('title','Tag')
+@section('title')
+    {{ $query }}
+@endsection
 
 @push('css')
     <link href="{{ asset('assets/frontend/css/category/styles.css') }}" rel="stylesheet">
@@ -14,7 +16,7 @@
 
 @section('content')
     <div class="slider display-table center-text">
-        <h1 class="title display-table-cell"><b>{{ $tag->name }}</b></h1>
+        <h1 class="title display-table-cell"><b>{{ $posts->count() }} Results for {{ $query }}</b></h1>
     </div><!-- slider -->
 
     <section class="blog-area section">
@@ -69,9 +71,10 @@
                         </div><!-- card -->
                     </div><!-- col-lg-4 col-md-6 -->
                 @endforelse
+
             </div><!-- row -->
 
-            {{ $posts->links() }}
+            {{--{{ $posts->links() }}--}}
 
         </div><!-- container -->
     </section><!-- section -->
