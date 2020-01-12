@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Post')->withTimestamps();
     }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
+
+    public function scopeAuthors($query)
+    {
+        return $query->where('role_id',2);
+    }
 }
