@@ -19,6 +19,7 @@ Route::get('/tag/{slug}','PostController@postByTag')->name('tag.posts');
 Route::get('profile/{username}','AuthorController@profile')->name('author.profile');
 Route::post('subscriber','SubscriberController@store')->name('subscriber.store');
 Route::get('/search','SearchController@search')->name('search');
+Route::get('profile/{username}','AuthorController@profile')->name('author.profile');
 
 Auth::routes();
 
@@ -45,6 +46,9 @@ Route::group(['as'=> 'admin.','prefix' => 'admin','namespace'=>'Admin', 'middlew
 
     Route::get('comments','CommentController@index')->name('comment.index');
     Route::delete('comments/{id}','CommentController@destroy')->name('comment.destroy');
+
+    Route::get('authors','AuthorController@index')->name('author.index');
+    Route::delete('authors/{id}','AuthorController@destroy')->name('author.destroy');
 
     Route::get('/subscriber','SubscriberController@index')->name('subscriber.index');
     Route::delete('/subscriber/{subscriber}','SubscriberController@destroy')->name('subscriber.destroy');
